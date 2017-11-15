@@ -192,7 +192,7 @@ public class ZoomTransition: UIPercentDrivenInteractiveTransition, UIViewControl
 	
 	// MARK: - Gesture Recognizer Handlers
 	
-	func handlePinchGesture(_ gesture: UIPinchGestureRecognizer) {
+    @objc func handlePinchGesture(_ gesture: UIPinchGestureRecognizer) {
 		
 		switch (gesture.state) {
 		case .began:
@@ -270,7 +270,7 @@ public class ZoomTransition: UIPercentDrivenInteractiveTransition, UIViewControl
 		}
 	}
 	
-	func handleRotationGesture(_ gesture: UIRotationGestureRecognizer){
+    @objc func handleRotationGesture(_ gesture: UIRotationGestureRecognizer){
 		if interactive {
 			if gesture.state == UIGestureRecognizerState.changed {
 				transitionView!.transform = transitionView!.transform.rotated(by: gesture.rotation)
@@ -279,7 +279,7 @@ public class ZoomTransition: UIPercentDrivenInteractiveTransition, UIViewControl
 		}
 	}
 	
-	func handlePanGesture(_ gesture: UIPanGestureRecognizer){
+    @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer){
 		let view = gesture.view!
 		
 		if interactive {
