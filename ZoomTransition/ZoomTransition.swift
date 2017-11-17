@@ -30,8 +30,9 @@ public class ZoomTransition: UIPercentDrivenInteractiveTransition, UIViewControl
 	private let completionThreshold: CGFloat = 0.7
 	private var interactive: Bool = false
 	
-	var allowsInteractiveGesture = true
-	
+    var allowsInteractiveGesture = true
+    public var animationDamping: CGFloat = 0.8
+
 	public init(navigationController: UINavigationController) {
 		self.navigationController = navigationController
 	}
@@ -126,7 +127,7 @@ public class ZoomTransition: UIPercentDrivenInteractiveTransition, UIViewControl
 		fromView?.alpha = 0;
 		
 		let duration = transitionDuration(using: transitionContext!)
-		UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
+		UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: animationDamping, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
 			
 			self.toViewController?.view.alpha = 1
 			if (self.interactive == false){
@@ -159,7 +160,7 @@ public class ZoomTransition: UIPercentDrivenInteractiveTransition, UIViewControl
 		fromView?.alpha = 0;
 		let duration = transitionDuration(using: transitionContext!)
 		
-		UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: { () -> Void in
+		UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: animationDamping, initialSpringVelocity: 0, options: [], animations: { () -> Void in
 			self.fromViewController?.view.alpha = 0
 			if (self.interactive == false){
 				self.transitionView?.frame = self.toFrame!
